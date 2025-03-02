@@ -1,0 +1,1 @@
+This project allows sales to be added by making a POST request using a token obtained from a specific site. The returned sales data is then listed. A "Generate Invoice" button next to each listed product enables downloading the order details as a PDF.
