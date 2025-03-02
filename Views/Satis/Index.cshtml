@@ -1,0 +1,36 @@
+﻿@model List<BirFatura.Models.Satis>
+
+@{
+    ViewBag.Title = "Satışlar";
+}
+
+<h2>Satışlar</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sipariş ID</th>
+            <th>Müşteri</th>
+            <th>Sipariş Tarihi</th>
+            <th>Toplam Tutar</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.CustomerName</td>
+                <td>@(item.OrderDate.HasValue ? item.OrderDate.Value.ToString("dd/MM/yyyy") : "Tarih Bilgisi Yok!")</td>
+                <td>@item.TotalAmount.ToString("C")</td>
+                <td>
+                    <form asp-controller="Satis" asp-action="Faturalandir" method="post">
+                        <input type="hidden" name="orderId" value="@item.OrderId" />
+                        <button type="submit" class="btn btn-primary">Faturalandır</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
